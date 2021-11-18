@@ -214,7 +214,7 @@
           
           var random = random.join("");
           puppy.push(random);
-          if (random === "didi" && roller(100) <= 90) {
+          if (random === "didi" && roller(100) <= 80) {
             puppydeath = 1;
           }
         } 
@@ -839,12 +839,14 @@
     
 
     function phenoreader() {
-      var tffix = puppy.toString();
-      var tffix = tffix.replace(/,\+,/g, " \+ ");
-      var tffix = tffix.replace(/,/, "");
-      var tffix = tffix.replace(/,/g, " ");
-      var tffix = tffix.trim();
-      var temppuppy = tffix;
+		pheno = [' '];
+
+		 var tffix = puppy.toString();
+		 var tffix = tffix.replace(/,\+,/g, " \+ ");
+		 var tffix = tffix.replace(/,/, "");
+		 var tffix = tffix.replace(/,/g, " ");
+		 var tffix = tffix.trim();
+		 var temppuppy = tffix;
 
       function phenobasecoat() {
         function normalbase() {
@@ -880,14 +882,17 @@
         } // normalbase();
         
         
-        if (temppuppy.search(/\b(didi)\b/) != -1) {
-          pheno.push("Lethal White");
-        } else if (temppuppy.search(/\b(DD|Dd|Ddi)\b/) != -1) {
+        
+		//   console.log(temppuppy);
+        if (temppuppy.search(/\b(DD|Dd|Ddi)\b/) != -1) {
           // console.log("no dilute");
         } else if (temppuppy.search(/\b(dd)\b/) != -1) {
           pheno.push("Dilute");
         } else if (temppuppy.search(/\b(ddi)\b/) != -1) {
           pheno.push("Double Dilute");
+		  } else if (temppuppy.search(/\b(didi)\b/) != -1) {
+			//   console.log('yas');
+          pheno.push("Lethal White");
         } else {
           console.log("Dilute error");
         }
@@ -1171,10 +1176,11 @@
       } phenomarkings();
       
       if (pheno.indexOf("Lethal White") != -1) {
-        var x = roller(5);
-        if (x < 5) {
-          pheno = ["Stillborn"];
-        }
+			pheno = ["Stillborn"];
+      //   var x = roller(5);
+      //   if (roller < 5) {
+      //     pheno = ["Stillborn"];
+      //   }
       }
 
   } // end phenoreader();
@@ -1276,10 +1282,10 @@
           pheno: phenofinal
         };
         
-        if (pupA.pheno === "Stillborn" || pupB.pheno === "Stillborn") {
-          pupA.pheno = "Stillborn";
-          pupB.pheno = "Stillborn";
-        }
+      //   if (pupA.pheno === "Stillborn" || pupB.pheno === "Stillborn") {
+      //     pupA.pheno = "Stillborn";
+      //     pupB.pheno = "Stillborn";
+      //   }
         
         document.getElementById(ida).innerHTML = "Option A" + "\n" + "Genotype: " + pupA.geno + "\n" + "Phenotype: " + pupA.pheno;
         document.getElementById(idb).innerHTML = "Option B" + "\n" + "Genotype: " + pupB.geno + "\n" + "Phenotype: " + pupB.pheno; 
